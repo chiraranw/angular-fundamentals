@@ -22,7 +22,13 @@ import { ErrorNotFoundComponent } from './errors/error-not-found.component';
     ErrorNotFoundComponent,
   ],
   imports: [BrowserModule, RouterModule.forRoot(routes)],
-  providers: [],
+  providers: [
+    { provide: 'canDeactivateCreateEvent', useValue: checkDirtyState },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
+
+export function checkDirtyState(component: CreateEventComponent) {
+  return component.isDirty;
+}

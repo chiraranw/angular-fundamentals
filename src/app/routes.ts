@@ -7,7 +7,11 @@ import { CreateEventComponent } from './events/create-event/create-event.compone
 import { ErrorNotFoundComponent } from './errors/error-not-found.component';
 import { InvalidIdGuard } from './events/event-details/invalid-id.guard';
 export const routes: Routes = [
-  { path: 'events/new', component: CreateEventComponent },
+  {
+    path: 'events/new',
+    component: CreateEventComponent,
+    canDeactivate: ['canDeactivateCreateEvent'],
+  },
   { path: 'events', component: EventsListComponent },
   { path: '404', component: ErrorNotFoundComponent },
   {
