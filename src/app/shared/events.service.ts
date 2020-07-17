@@ -314,4 +314,8 @@ export class EventsService {
       },
     ];
   }
+
+  getEvent(id: number) {
+    return this.getEvents().find((event) => event.id === id);
+  }
 }
