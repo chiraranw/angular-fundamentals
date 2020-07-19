@@ -42,7 +42,14 @@
       <div class="navbar-header navbar-right">
         <ul class="nav navbar-nav">
           <li>
-            <a [routerLink]="['/users/profile']">Welcome Nation</a>
+            <a [routerLink]="['users/login']" *ngIf="!authSvc.isAuthenticated()"
+              >Login</a
+            >
+            <a
+              [routerLink]="['/users/profile']"
+              *ngIf="authSvc.isAuthenticated()"
+              >Welcome {{ authSvc.currentUser.firstName }}</a
+            >
           </li>
         </ul>
       </div>
