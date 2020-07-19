@@ -27,4 +27,10 @@ export const routes: Routes = [
     canActivate: [InvalidIdGuard],
   },
   { path: '', redirectTo: 'events', pathMatch: 'full' },
+
+  {
+    path: 'users',
+    loadChildren: () =>
+      import('./users/users.module').then((m) => m.UsersModule),
+  },
 ];

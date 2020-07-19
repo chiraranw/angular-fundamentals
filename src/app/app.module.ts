@@ -10,6 +10,7 @@ import { RouterModule } from '@angular/router';
 import { routes } from './routes';
 import { CreateEventComponent } from './events/create-event/create-event.component';
 import { ErrorNotFoundComponent } from './errors/error-not-found.component';
+import { ProfileComponent } from './users/profile.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { ErrorNotFoundComponent } from './errors/error-not-found.component';
     EventDetailsComponent,
     CreateEventComponent,
     ErrorNotFoundComponent,
+    ProfileComponent,
   ],
   imports: [BrowserModule, RouterModule.forRoot(routes)],
   providers: [
