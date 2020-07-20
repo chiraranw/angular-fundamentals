@@ -14,6 +14,7 @@ import {
   EventDetailsComponent,
   CreateEventComponent,
 } from './events';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,12 @@ import {
     ErrorNotFoundComponent,
     ProfileComponent,
   ],
-  imports: [BrowserModule, RouterModule.forRoot(routes)],
+  imports: [
+    BrowserModule,
+    RouterModule.forRoot(routes),
+    ReactiveFormsModule,
+    FormsModule,
+  ],
   providers: [
     { provide: 'canDeactivateCreateEvent', useValue: checkDirtyState },
   ],
@@ -35,5 +41,5 @@ import {
 export class AppModule {}
 
 export function checkDirtyState(component: CreateEventComponent) {
-  return component.isDirty;
+  return true;
 }
