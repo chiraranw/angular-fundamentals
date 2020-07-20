@@ -19,8 +19,14 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.profileForm = this.fb.group({
-      firstName: [this.authSvc.currentUser?.firstName, Validators.required],
-      lastName: [this.authSvc.currentUser?.lastname, Validators.required],
+      firstName: [
+        this.authSvc.currentUser?.firstName,
+        [Validators.required, Validators.pattern('[a-zA-Z].*')],
+      ],
+      lastName: [
+        this.authSvc.currentUser?.lastname,
+        [Validators.required, Validators.pattern('[a-zA-Z].*')],
+      ],
     });
   }
 
