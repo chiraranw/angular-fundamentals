@@ -22,5 +22,23 @@
     </div>
   </div>
   <hr />
-  <ems-event-sessions [sessions]="event?.sessions"></ems-event-sessions>
+
+  <div class="row">
+    <div class="col-md-2">
+      <h3 style="margin: 0;">Sessions</h3>
+    </div>
+    <div class="col-md-2">
+      <a (click)="addSession()">Add Session</a>
+    </div>
+  </div>
+
+  <ems-event-sessions
+    [sessions]="event?.sessions"
+    *ngIf="!addMode"
+  ></ems-event-sessions>
+  <ems-create-session
+    *ngIf="addMode"
+    (newSession)="saveSession($event)"
+    (cancelAddSession)="onCancelAddSesion($event)"
+  ></ems-create-session>
 </div>

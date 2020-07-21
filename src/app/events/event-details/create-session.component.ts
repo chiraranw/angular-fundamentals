@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import {
   FormGroup,
   FormBuilder,
@@ -20,6 +20,12 @@ export class CreateSessionComponent implements OnInit {
   abstract: string;
 
   newSessionForm: FormGroup;
+  @Output('newSession') newSession: EventEmitter<ISession> = new EventEmitter<
+    ISession
+  >();
+  @Output('cancelAddSession') cancelAddSession: EventEmitter<
+    any
+  > = new EventEmitter();
 
   constructor(private fb: FormBuilder) {}
 
@@ -50,8 +56,12 @@ export class CreateSessionComponent implements OnInit {
       abstract: formValues.abstract,
       voters: [],
     };
-
     console.log(session);
+    this.newSession.emit(session);
+  }
+
+  onCancelAddSession() {
+    this.cancelAddSession.emit('cancel');
   }
 
   public restrictedWords(words) {
