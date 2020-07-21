@@ -7,6 +7,7 @@ import { CreateEventComponent } from './events/create-event/create-event.compone
 import { ErrorNotFoundComponent } from './errors/error-not-found.component';
 import { InvalidIdGuard } from './events/event-details/invalid-id.guard';
 import { EventsListResolverService } from './events/events-list-resolver.service';
+import { CreateSessionComponent } from './events/event-details/create-session.component';
 export const routes: Routes = [
   {
     path: 'events/new',
@@ -27,6 +28,8 @@ export const routes: Routes = [
     canActivate: [InvalidIdGuard],
   },
   { path: '', redirectTo: 'events', pathMatch: 'full' },
+
+  { path: 'events/session/new', component: CreateSessionComponent },
 
   {
     path: 'users',
