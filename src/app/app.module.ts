@@ -16,6 +16,7 @@ import {
 } from './events';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { CreateSessionComponent } from './events/event-details/create-session.component';
+import { EventSessionsComponent } from './events/event-details/event-sessions.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { CreateSessionComponent } from './events/event-details/create-session.co
     ErrorNotFoundComponent,
     ProfileComponent,
     CreateSessionComponent,
+    EventSessionsComponent,
   ],
   imports: [
     BrowserModule,
