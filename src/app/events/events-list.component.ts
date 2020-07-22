@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { EventsService } from '../shared/events.service';
-import { ToastrService } from '../common/toastr.service';
 import { ActivatedRouteSnapshot, ActivatedRoute } from '@angular/router';
 import { IEvent } from './event-model';
+import { Toastr, TOASTR_TOKEN } from '../common/toastr.service';
 
 @Component({
   selector: 'ems-events-list',
@@ -14,15 +14,11 @@ export class EventsListComponent implements OnInit {
 
   constructor(
     private eventsSvc: EventsService,
-    private toastSvc: ToastrService,
-    private activatedRt: ActivatedRoute
+    private activatedRt: ActivatedRoute,
+    @Inject(TOASTR_TOKEN) private toastr: Toastr
   ) {}
 
   ngOnInit(): void {
     this.events = this.activatedRt.snapshot.data['events'];
-  }
-
-  handleClickEvent(name: string): void {
-    this.toastSvc.success(name);
   }
 }

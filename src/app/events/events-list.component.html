@@ -4,10 +4,7 @@
 
   <div class="row">
     <div class="col-md-5" *ngFor="let event of events">
-      <ems-event-thumbnail
-        [event]="event"
-        (click)="handleClickEvent(event.name)"
-      ></ems-event-thumbnail>
+      <ems-event-thumbnail [event]="event"></ems-event-thumbnail>
     </div>
   </div>
 </div>

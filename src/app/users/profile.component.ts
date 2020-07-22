@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from './auth.service';
 import { Router } from '@angular/router';
+import { Toastr, TOASTR_TOKEN } from '../common/toastr.service';
 
 @Component({
   selector: 'ems-profile',
@@ -14,7 +15,8 @@ export class ProfileComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private authSvc: AuthService,
-    private router: Router
+    private router: Router,
+    @Inject(TOASTR_TOKEN) private toastr: Toastr
   ) {}
 
   ngOnInit(): void {
@@ -47,6 +49,7 @@ export class ProfileComponent implements OnInit {
   onSubmit(formValue) {
     if (this.profileForm.valid) {
       this.authSvc.updateProfile(formValue.firstName, formValue.lastName);
+      this.toastr.success('Saved successful');
       this.router.navigate(['/events']);
     }
   }

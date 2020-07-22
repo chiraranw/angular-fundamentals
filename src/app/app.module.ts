@@ -19,6 +19,9 @@ import { CreateSessionComponent } from './events/event-details/create-session.co
 import { EventSessionsComponent } from './events/event-details/event-sessions.component';
 import { CollapsibleWellComponent } from './common/collapsible-well.component';
 import { DurationPipe } from './shared/duration.pipe';
+import { Toastr, TOASTR_TOKEN } from './common/toastr.service';
+
+let toastr: Toastr = window['toastr'];
 
 @NgModule({
   declarations: [
@@ -43,6 +46,7 @@ import { DurationPipe } from './shared/duration.pipe';
   ],
   providers: [
     { provide: 'canDeactivateCreateEvent', useValue: checkDirtyState },
+    { provide: TOASTR_TOKEN, useValue: toastr },
   ],
   bootstrap: [AppComponent],
 })
