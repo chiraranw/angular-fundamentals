@@ -29,38 +29,59 @@
     </div>
 
     <div class="col-md-7">
-      <button
-        type="button"
-        class="btn btn-default"
-        [class.active]="filterBy === 'all'"
-        (click)="filterBy = 'all'"
-      >
-        All
-      </button>
-      <button
-        type="button"
-        class="btn btn-default"
-        [class.active]="filterBy === 'beginner'"
-        (click)="filterBy = 'beginner'"
-      >
-        Beginner
-      </button>
-      <button
-        type="button"
-        class="btn btn-default"
-        [class.active]="filterBy === 'intermediate'"
-        (click)="filterBy = 'intermediate'"
-      >
-        Intermediate
-      </button>
-      <button
-        type="button"
-        class="btn btn-default"
-        [class.active]="filterBy === 'advanced'"
-        (click)="filterBy = 'advanced'"
-      >
-        Advanced
-      </button>
+      <div class="btn-group" style="margin-left: 20px; margin-right: 20px;">
+        <button
+          type="button"
+          class="btn btn-default"
+          [class.active]="sortBy === 'name'"
+          (click)="sortBy = 'name'"
+        >
+          By Name
+        </button>
+        <button
+          type="button"
+          class="btn btn-default"
+          [class.active]="sortBy === 'votes'"
+          (click)="sortBy = 'votes'"
+        >
+          By Votes
+        </button>
+      </div>
+
+      <div class="btn-group btn-group-sm">
+        <button
+          type="button"
+          class="btn btn-default"
+          [class.active]="filterBy === 'all'"
+          (click)="filterBy = 'all'"
+        >
+          All
+        </button>
+        <button
+          type="button"
+          class="btn btn-default"
+          [class.active]="filterBy === 'beginner'"
+          (click)="filterBy = 'beginner'"
+        >
+          Beginner
+        </button>
+        <button
+          type="button"
+          class="btn btn-default"
+          [class.active]="filterBy === 'intermediate'"
+          (click)="filterBy = 'intermediate'"
+        >
+          Intermediate
+        </button>
+        <button
+          type="button"
+          class="btn btn-default"
+          [class.active]="filterBy === 'advanced'"
+          (click)="filterBy = 'advanced'"
+        >
+          Advanced
+        </button>
+      </div>
     </div>
 
     <div class="col-md-2">
@@ -71,6 +92,7 @@
   <ems-event-sessions
     [filterBy]="filterBy"
     [sessions]="event?.sessions"
+    [sortBy]="sortBy"
     *ngIf="!addMode"
   ></ems-event-sessions>
   <ems-create-session

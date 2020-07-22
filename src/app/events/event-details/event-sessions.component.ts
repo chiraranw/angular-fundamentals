@@ -15,14 +15,16 @@ import { ISession } from '../event-model';
 export class EventSessionsComponent implements OnInit, OnChanges {
   @Input('sessions') sessions: ISession[];
   @Input('filterBy') filterBy: string;
+  @Input('sortBy') sortBy: string;
   public visibleSessions: ISession[] = [];
   constructor() {}
 
   ngOnChanges(changes: SimpleChanges): void {
-    console.log('OnChanges....');
-
     if (this.sessions) {
       this.filterBySessions(this.filterBy);
+      this.sortBy === 'name'
+        ? this.visibleSessions.sort(sortByName)
+        : this.visibleSessions.sort(sortByVotes);
     }
   }
   filterBySessions(filter: string) {
@@ -36,4 +38,14 @@ export class EventSessionsComponent implements OnInit, OnChanges {
   }
 
   ngOnInit(): void {}
+}
+
+function sortByName(s1: ISession, s2: ISession) {
+  if (s1.name > s2.name) return 1;
+  else if (s1.name === s2.name) return 0;
+  else return -1;
+}
+
+function sortByVotes(s1: ISession, s2: ISession) {
+  return s2.voters.length - s1.voters.length;
 }
