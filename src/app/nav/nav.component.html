@@ -53,18 +53,35 @@
           </li>
         </ul>
       </div>
-      <form id="searchForm" class="navbar-form navbar-right">
+      <form
+        id="searchForm"
+        class="navbar-form navbar-right"
+        (ngSubmit)="searchSessions(searchTerm)"
+      >
         <div class="form-group">
           <input
+            [(ngModel)]="searchTerm"
+            name="searchTerm"
             type="text"
             class="form-control"
             placeholder="Search Sessions"
           />
         </div>
-        <button class="btn btn-default">
+        <button class="btn btn-default" emsTriggerModal>
           Search
         </button>
       </form>
     </div>
   </div>
 </div>
+
+<ems-simple-modal title="=Matching Sessions">
+  <div class="list-group">
+    <a
+      class="list-group-item"
+      *ngFor="let session of foundSession"
+      [routerLink]="['/events']"
+      >{{ session.name }}</a
+    >
+  </div>
+</ems-simple-modal>

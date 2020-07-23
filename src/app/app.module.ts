@@ -17,11 +17,18 @@ import {
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { CreateSessionComponent } from './events/event-details/create-session.component';
 import { EventSessionsComponent } from './events/event-details/event-sessions.component';
-import { CollapsibleWellComponent } from './common/collapsible-well.component';
 import { DurationPipe } from './shared/duration.pipe';
-import { Toastr, TOASTR_TOKEN } from './common/toastr.service';
+import {
+  Toastr,
+  TOASTR_TOKEN,
+  JQ_TOKEN,
+  CollapsibleWellComponent,
+} from './common/index';
+import { SimpleModalComponent } from './common/simple-modal.component';
+import { TriggerModalDirective } from './common/trigger-modal.directive';
 
 let toastr: Toastr = window['toastr'];
+let jQuery = window['$'];
 
 @NgModule({
   declarations: [
@@ -37,6 +44,8 @@ let toastr: Toastr = window['toastr'];
     EventSessionsComponent,
     CollapsibleWellComponent,
     DurationPipe,
+    SimpleModalComponent,
+    TriggerModalDirective,
   ],
   imports: [
     BrowserModule,
@@ -47,6 +56,7 @@ let toastr: Toastr = window['toastr'];
   providers: [
     { provide: 'canDeactivateCreateEvent', useValue: checkDirtyState },
     { provide: TOASTR_TOKEN, useValue: toastr },
+    { provide: JQ_TOKEN, useValue: jQuery },
   ],
   bootstrap: [AppComponent],
 })
