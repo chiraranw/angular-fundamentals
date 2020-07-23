@@ -1,4 +1,15 @@
 <div class="row" *ngFor="let session of visibleSessions">
+  <div class="col-md-1">
+    <div *ngIf="authSvc.isAuthenticated()">
+      <ems-upvote
+        (vote)="toggleVote(session)"
+        [count]="session.voters.length"
+        [voted]="userHasVoted(session)"
+      >
+      </ems-upvote>
+    </div>
+  </div>
+
   <div class="col-md-10">
     <ems-collapsible-well>
       <div well-title>

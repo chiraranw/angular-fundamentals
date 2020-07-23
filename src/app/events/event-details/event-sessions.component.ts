@@ -6,6 +6,8 @@ import {
   SimpleChanges,
 } from '@angular/core';
 import { ISession } from '../event-model';
+import { AuthService } from 'src/app/users/auth.service';
+import { VoterService } from './voter.service';
 
 @Component({
   selector: 'ems-event-sessions',
@@ -17,7 +19,25 @@ export class EventSessionsComponent implements OnInit, OnChanges {
   @Input('filterBy') filterBy: string;
   @Input('sortBy') sortBy: string;
   public visibleSessions: ISession[] = [];
-  constructor() {}
+  constructor(public authSvc: AuthService, private voterSvc: VoterService) {}
+
+  toggleVote(session: ISession) {
+    if (this.userHasVoted(session)) {
+      this.voterSvc.deleteVoter(session, this.authSvc.currentUser.username);
+    } else {
+      this.voterSvc.addVoter(session, this.authSvc.currentUser.username);
+    }
+
+    if (this.sortBy === 'votes') {
+      this.visibleSessions.sort(sortByVotes);
+    }
+  }
+  userHasVoted(session: ISession) {
+    return this.voterSvc.userHasVoted(
+      session,
+      this.authSvc.currentUser.username
+    );
+  }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (this.sessions) {

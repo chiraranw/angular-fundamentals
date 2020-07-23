@@ -26,6 +26,7 @@ import {
 } from './common/index';
 import { SimpleModalComponent } from './common/simple-modal.component';
 import { TriggerModalDirective } from './common/trigger-modal.directive';
+import { UpvoteComponent } from './events/upvote.component';
 
 let toastr: Toastr = window['toastr'];
 let jQuery = window['$'];
@@ -46,6 +47,7 @@ let jQuery = window['$'];
     DurationPipe,
     SimpleModalComponent,
     TriggerModalDirective,
+    UpvoteComponent,
   ],
   imports: [
     BrowserModule,
